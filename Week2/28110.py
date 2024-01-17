@@ -6,17 +6,26 @@ result = 0
 check = 0
 #이전에 저장한 check
 com = 0
+number = 0
 
 for i in range(len(problem)-1):
     target = (problem[i] + problem[i+1])//2
     #현재 i ~i+1 부분과 인접한 다른 문제의 난이도 차이의 합
-    check = (target - problem[i]) + (problem[i+1] - target)
+    check = ((target - problem[i]) + (problem[i+1] - target))//2
 
     if target == problem[i]:
         pass
     elif check > com:
         com = check
         result = target
+        number = i
+    elif check == com:
+        if number > i:
+            com = check
+            result = target
+            number = i
+
+
 
 if result == 0:
     print(-1)
