@@ -2,13 +2,13 @@
 #
 # num = int(stdin.readline().strip())
 #
-# answer = []
+# command = []
 # strike = []
 # ball = []
 #
 # for _ in range(num):
 #     a, b, c = stdin.readline().strip().split()
-#     answer.append(a)
+#     command.append(a)
 #     strike.append(b)
 #     ball.append(c)
 #
