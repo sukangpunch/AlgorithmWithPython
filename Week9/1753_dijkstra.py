@@ -1,19 +1,18 @@
 from sys import stdin
 import heapq
 
-N = int(stdin.readline().strip())
-M = int(stdin.readline().strip())
-graph = [[] for _ in range(N + 1)]
+v, e = map(int, stdin.readline().split())
+k = int(stdin.readline().strip())
 
-for _ in range(M):
+graph = [[] for _ in range(v + 1)]
+
+for _ in range(e):
     a, b, c = map(int, stdin.readline().split())
     graph[a].append((b, c))
-start, end = map(int, stdin.readline().split())
-print(graph)
 
 
 def dijkstra(graph, start):
-    distances = [int(1e9)] * (N + 1)
+    distances = [int(1e9)] * (v + 1)
     distances[start] = 0
     queue = []
     heapq.heappush(queue, [distances[start], start])
@@ -29,8 +28,13 @@ def dijkstra(graph, start):
             if distance < distances[next_node]:
                 distances[next_node] = distance
                 heapq.heappush(queue, [distance, next_node])
+
     return distances
 
 
-dist_start = dijkstra(graph, start)
-print(dist_start[end])
+result = dijkstra(graph, k)
+for i in range(1, v + 1):
+    if result[i] < int(1e9):
+        print(result[i])
+    else:
+        print("INF")
